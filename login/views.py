@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from login.forms import SignUpForm
 
 
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -27,8 +28,10 @@ def signin(request):
     user = authenticate(username=username, password=password)
     if user is not None and user.is_active:
         login(request, user)
-        return HttpResponseRedirect('signin')
+        return HttpResponseRedirect('home')
     else:
         form = SignUpForm()
     return render(request, 'signin.html', {'form': form})
+
+
 
